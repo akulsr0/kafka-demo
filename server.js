@@ -8,7 +8,7 @@ const app = express();
 startConsumer();
 
 let i = 1;
-const NO_OF_MSGS = 100;
+const NO_OF_MSGS = 500;
 
 app.get("/", async (req, res) => {
   res.write("<h1>Hello</h1>");
@@ -16,7 +16,7 @@ app.get("/", async (req, res) => {
   await connectProducer();
 
   for (let k = i; k <= i + NO_OF_MSGS; k++) {
-    await sendMessage("test_topic", {
+    sendMessage("test_topic", {
       key: `k-${k}`,
       value: JSON.stringify({
         mydata: `v-${k}`,
